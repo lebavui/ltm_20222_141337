@@ -1,4 +1,8 @@
 {
     "cmake.configureOnOpen": false,
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+    "files.associations": {
+        "netdb.h": "c",
+        "stdlib.h": "c"
+    }
 }
