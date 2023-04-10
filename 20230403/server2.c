@@ -49,18 +49,27 @@ int main()
     printf("New client connected: %d\n", client);
 
     // Nhan du lieu tu trinh duyet
-    char buf[256];
-    int ret = recv(client, buf, sizeof(buf), 0);
-    if (ret <= 0)
+    char buf[128];
+    char *request = NULL;
+    int size = 0;
+    while (1)
     {
-        printf("recv() failed.\n");
-        exit(1);
+        int ret = recv(client, buf, sizeof(buf), 0);
+        if (ret <= 0)
+        {
+            printf("recv() failed.\n");
+            break;
+        }
+    
+        request = realloc(request, size + ret);
+        memcpy(request + size, buf, ret);
+        size += ret;
+        
+        if (strstr(request, "\r\n\r\n") != NULL)
+            break;
     }
-
-    // Them ky tu ket thuc xau va in ra man hinh
-    if (ret < sizeof(buf))
-        buf[ret] = 0;
-    puts(buf);
+    
+    printf("%s\n", request);
 
     // Gui du lieu sang trinh duyet
     char *msg = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<html><body><h1>Hello World</h1></body></html>";
