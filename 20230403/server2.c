@@ -70,6 +70,7 @@ int main()
     }
     
     printf("%s\n", request);
+    free(request);
 
     // Gui du lieu sang trinh duyet
     char *msg = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<html><body><h1>Hello World</h1></body></html>";
