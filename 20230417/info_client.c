@@ -6,14 +6,6 @@
 #include <string.h>
 #include <arpa/inet.h>
 
-void clean_stdin()
-{
-    int c;
-    do {
-        c = getchar();
-    } while (c != '\n' && c != EOF);
-}
-
 int main() {
     int client = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
@@ -35,7 +27,8 @@ int main() {
     printf("Nhap ten may tinh: ");
     scanf("%s", computer_name);
 
-    clean_stdin();
+    // Xoa \n trong bo dem
+    getchar();
 
     // Chuyen vao buffer
     strcpy(buf, computer_name);
@@ -47,7 +40,8 @@ int main() {
     printf("Nhap so luong o dia:\n");
     scanf("%d", &n);
 
-    clean_stdin();
+    // Xoa \n trong bo dem
+    getchar();
 
     char disk_letter;
     short int disk_size;
@@ -56,10 +50,12 @@ int main() {
     {
         printf("Nhap ten o dia: ");
         scanf("%c", &disk_letter);
-        clean_stdin();
+        
         printf("Nhap kich thuoc o dia: ");
         scanf("%hd", &disk_size);
-        clean_stdin();
+        
+        // Xoa \n trong bo dem
+        getchar();
         
         // Chuyen vao buffer
         buf[pos] = disk_letter;

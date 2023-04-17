@@ -6,14 +6,6 @@
 #include <string.h>
 #include <arpa/inet.h>
 
-void clean_stdin()
-{
-    int c;
-    do {
-        c = getchar();
-    } while (c != '\n' && c != EOF);
-}
-
 int main() {
     int client = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
@@ -40,7 +32,8 @@ int main() {
         printf("Nhap MSSV: ");
         scanf("%s", mssv);
         
-        clean_stdin();
+        // Xoa \n trong bo dem
+        getchar();
 
         if (strncmp(mssv, "0000", 4) == 0)
             break;
@@ -48,15 +41,18 @@ int main() {
         printf("Nhap Ho ten: ");
         fgets(hoten, sizeof(hoten), stdin);
         hoten[strlen(hoten) - 1] = 0;
-        clean_stdin();
 
         printf("Nhap Ngay sinh: ");
         scanf("%s", ns);
 
-        clean_stdin();
+        // Xoa \n trong bo dem
+        getchar();
 
         printf("Nhap Diem TB: ");
         scanf("%f", &dtb);
+
+        // Xoa \n trong bo dem
+        getchar();
 
         sprintf(buf, "%s %s %s %.2f", mssv, hoten, ns, dtb);
         send(client, buf, strlen(buf), 0);
