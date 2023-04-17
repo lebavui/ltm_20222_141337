@@ -6,6 +6,7 @@
         "stdlib.h": "c",
         "string.h": "c",
         "types.h": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "inet.h": "c"
     }
 }
