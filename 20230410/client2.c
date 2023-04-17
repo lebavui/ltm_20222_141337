@@ -71,6 +71,9 @@ int main(int argc, char *argv[]) {
     sprintf(msg, "GET %s HTTP/1.1\r\nHost: %s\r\nConnection: close\r\n\r\n", path, domain);
     send(client, msg, strlen(msg), 0);
 
+    free(domain);
+    free(path);
+
     // Nhan tin nhan tu server
     char buf[2048];
     while (1)
