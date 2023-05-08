@@ -40,6 +40,8 @@ int main()
     int num_clients = 0;
     
     char buf[256];
+
+    struct timeval tv;
     
     while (1)
     {
@@ -58,6 +60,10 @@ int main()
                 maxdp = clients[i] + 1;
         }
 
+        // Thiet lap thoi gian cho
+        tv.tv_sec = 5;
+        tv.tv_usec = 0;
+
         // Chờ đến khi sự kiện xảy ra
         int ret = select(maxdp, &fdread, NULL, NULL, NULL);
 
@@ -65,6 +71,12 @@ int main()
         {
             perror("select() failed");
             return 1;
+        }
+
+        if (ret == 0)
+        {
+            printf("Timed out!!!\n");
+            continue;
         }
 
         // Kiểm tra sự kiện có yêu cầu kết nối
