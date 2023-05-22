@@ -8,6 +8,7 @@
         "types.h": "c",
         "unistd.h": "c",
         "inet.h": "c",
-        "socket.h": "c"
+        "socket.h": "c",
+        "stdio.h": "c"
     }
 }
