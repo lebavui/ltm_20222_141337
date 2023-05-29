@@ -17,7 +17,7 @@ int main()
     // tiến trình cha
     printf("Waiting for the child process\n");
     int pid;
-    while (pid = wait(NULL) != -1)
+    while ((pid = wait(NULL)) != -1)
     {
         printf("Child %d terminated.\n", pid);
     }
